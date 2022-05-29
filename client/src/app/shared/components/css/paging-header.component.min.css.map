@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../paging-header/paging-header.component.scss"
+    ],
+    "names": [],
+    "file": "paging-header.component.min.css"
+}
