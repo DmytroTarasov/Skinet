@@ -9,8 +9,7 @@ import { AccountService } from 'src/app/account/account.service';
 })
 export class AuthGuard implements CanActivate {
 
-    constructor(private accountService: AccountService, private router: Router) {
-    }
+    constructor(private accountService: AccountService, private router: Router) {}
 
     canActivate(
         route: ActivatedRouteSnapshot,
@@ -23,5 +22,4 @@ export class AuthGuard implements CanActivate {
             })
         )
     }
-
 }

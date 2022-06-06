@@ -10,5 +10,10 @@ namespace Core.Interfaces
         Task<T> GetEntityWithSpec(ISpecification<T> spec);
         Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec);
         Task<int> CountAsync(ISpecification<T> spec);
+
+        // sync methods for working with in-memory collections
+        void Add(T entity);
+        void Update(T entity);
+        void Delete(T entity);
     }
 }
