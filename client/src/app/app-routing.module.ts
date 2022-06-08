@@ -21,6 +21,10 @@ const routes: Routes = [
         data: {breadcrumb: 'Checkout'}}, // lazy loading
     {path: 'account', loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule),
         data: {breadcrumb: {skip: true}}}, // lazy loading
+    {path: 'orders', 
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./orders/orders.module').then(mod => mod.OrdersModule),
+        data: {breadcrumb: 'Orders'}}, // lazy loading
     {path: '**', redirectTo: 'not-found', pathMatch: 'full'}
 ];
 
