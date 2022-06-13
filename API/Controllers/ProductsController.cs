@@ -28,6 +28,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [Cached(600)] // time that cache will be persisted - 600seconds (Cached is an Attribute that we`ve created manually)
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts([FromQuery]ProductSpecParams productParams) {
             var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
             var countSpec = new ProductWithFiltersForCountSpecification(productParams); // spec responsible for counting items
@@ -44,6 +45,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)] // documentation for swagger
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)] // documentation for swagger
+        [Cached(600)] 
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id) {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
             
@@ -55,11 +57,13 @@ namespace API.Controllers
         }
 
         [HttpGet("brands")]
+        [Cached(600)] 
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands() {
             return Ok(await _productBrandRepo.ListAllAsync());
         }
 
         [HttpGet("types")]
+        [Cached(600)]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductTypes() {
             return Ok(await _productTypeRepo.ListAllAsync());
         }

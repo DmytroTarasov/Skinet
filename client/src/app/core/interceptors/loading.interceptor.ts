@@ -15,7 +15,11 @@ export class LoadingInterceptor implements HttpInterceptor {
     constructor(private busyService: BusyService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        // we can specify requests for which this loading indicator won`t be displayed
         if (request.method === 'POST' && request.url.includes('orders')) {
+            return next.handle(request);
+        }
+        if (request.method === 'DELETE') {
             return next.handle(request);
         }
         if (request.url.includes('emailexists')) {

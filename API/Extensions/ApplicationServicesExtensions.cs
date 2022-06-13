@@ -18,6 +18,8 @@ namespace API.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IPaymentService, PaymentService>();
 
+            services.AddSingleton<IResponseCacheService, ResponseCacheService>();
+
             services.Configure<ApiBehaviorOptions>(options => {
                 options.InvalidModelStateResponseFactory = actionContext => {
                     // here, we want to shape our response 
