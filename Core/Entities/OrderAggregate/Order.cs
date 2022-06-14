@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Core.Entities.OrderAggregate
 {
     public class Order : BaseEntity
@@ -22,7 +24,9 @@ namespace Core.Entities.OrderAggregate
 
         // by this property we will retrieve all orders of the particular user
         public string BuyerEmail { get; set; }
-        public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
+        public DateTime OrderDate { get; set; } = DateTime.UtcNow;
+
+        [Required]
         public Address ShipToAddress { get; set; }
         public DeliveryMethod DeliveryMethod { get; set; }
         public IReadOnlyList<OrderItem> OrderItems { get; set; }

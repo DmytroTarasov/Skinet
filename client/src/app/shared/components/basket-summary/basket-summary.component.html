@@ -32,7 +32,7 @@
                                 class="img-fluid"
                                 style="max-height: 50px;">
     
-                            <div class="ml-3 d-inline-block align-middle">
+                            <div class="ms-3 d-inline-block align-middle">
                                 <h5 class="mb-0">
                                     <a routerLink="/shop/{{item.id}}" class="text-dark">
                                         {{item.productName}}
@@ -48,9 +48,9 @@
                         <strong>{{item.price | currency}}</strong>
                     </td>
                     <td class="align-middle">
-                        <div class="d-flex align-items-center" [class.justify-content-center]="!isBasket">
+                        <div class="d-flex align-items-center justify-content-center">
                             <i *ngIf="isBasket"
-                                class="fa fa-minus-circle text-warning mr-2" 
+                                class="fa fa-minus-circle text-warning me-2" 
                                 style="cursor: pointer; font-size: 2em;"
                                 (click)="decrementItemQuantity(item)">
                             </i>
@@ -69,7 +69,7 @@
                     <td class="align-middle text-center">
                         <strong>{{item.price * item.quantity | currency}}</strong>
                     </td>
-                    <td class="align-middle pl-4">
+                    <td class="align-middle text-center">
                         <a class="text-danger">
                             <i *ngIf="isBasket"
                                 class="fa fa-trash" 

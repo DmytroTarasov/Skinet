@@ -14,12 +14,13 @@ namespace API.Controllers
         private readonly ILogger<PaymentsController> _logger;
 
         // we use in the Post method underneath. WhSecret tells that smth comes from Stripe and we can trust it
-        private const string WhSecret = "whsec_e6b901d45413858c085f9d2ef81f9cfb61bb05abebdf742646f646c3a3abea6e"; 
+        private readonly string _whSecret; 
 
-        public PaymentsController(IPaymentService paymentService, ILogger<PaymentsController> logger)
+        public PaymentsController(IPaymentService paymentService, ILogger<PaymentsController> logger, IConfiguration config)
         {
             _paymentService = paymentService;
             _logger = logger;
+            _whSecret = config.GetSection("StripeSettings:WhSecret").Value;
         }
 
         [Authorize]
@@ -37,7 +38,7 @@ namespace API.Controllers
             // read what Stripe has send to us
             var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
 
-            var stripeEvent = EventUtility.ConstructEvent(json, Request.Headers["Stripe-Signature"], WhSecret);
+            var stripeEvent = EventUtility.ConstructEvent(json, Request.Headers["Stripe-Signature"], _whSecret);
 
             PaymentIntent intent; // comes from Stripe.Net package
             Order order;

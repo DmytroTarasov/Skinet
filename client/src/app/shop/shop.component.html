@@ -4,14 +4,14 @@
         <section class="col-3">
             <ng-container *ngIf="types && brands">
 
-                <h5 class="text-warning ml-3 mt-4 mb-3">Sort</h5>
-                <select class="custom-select mb-4" (change)="onSortSelected($event.target.value)">
+                <h5 class="text-warning ms-3 mt-4 mb-3">Sort</h5>
+                <select class="form-select mb-4" (change)="onSortSelected($event.target.value)">
                     <option *ngFor="let sort of sortOptions"
                         [selected]="shopParams.sort === sort.value"
                         [value]="sort.value">{{sort.name}}</option>
                 </select>
     
-                <h5 class="text-warning ml-3">Brands</h5>
+                <h5 class="text-warning ms-3">Brands</h5>
                 <ul class="list-group my-3">
                     <li class="list-group-item" 
                         *ngFor="let brand of brands"
@@ -21,7 +21,7 @@
                         {{brand.name}}
                     </li>
                 </ul>
-                <h5 class="text-warning ml-3">Types</h5>
+                <h5 class="text-warning ms-3">Types</h5>
                 <ul class="list-group my-3">
                     <li class="list-group-item" 
                         *ngFor="let type of types"
@@ -45,16 +45,16 @@
                     [pageNumber]="this.shopParams.pageNumber">
                 </app-paging-header>
 
-                <div class="form-inline" *ngIf="products">
+                <div class="d-flex" *ngIf="products">
                     <input 
                         type="text" 
-                        class="form-control mr-2" 
+                        class="form-control me-2" 
                         style="width: 300px;" 
                         placeholder="search"
                         #search
                         (keyup.enter)="onSearch()">
-                    <button class="btn btn-outline-primary my-2" (click)="onSearch()">Search</button>
-                    <button class="btn btn-outline-success ml-2 my-2" (click)="onReset()">Reset</button>
+                    <button class="btn btn-outline-primary mx-2" (click)="onSearch()">Search</button>
+                    <button class="btn btn-outline-success" (click)="onReset()">Reset</button>
                 </div>
             </div>
 
